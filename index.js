@@ -21,7 +21,9 @@ con.connect(function(err) {
 
     // DeleteData(con);
 
-    SelectData(con);
+    // SelectData(con);
+
+    OrderData(con);
 })
 
 
@@ -62,6 +64,7 @@ function UpdateData(con) {
 // delete data
 function DeleteData(con) {
     const SQLQuery = "DELETE FROM `citizens` WHERE id=3";
+    // const SQLQuery = "DELETE FROM customers WHERE address = 'Mountain 21'";
     con.query(SQLQuery, function(err) {
         if(err) {
             console.log(err);
@@ -84,6 +87,19 @@ function SelectData(con) {
         // console.log(result[1].name);
         // console.log(fields);
         
+    })
+}
+
+// order by
+function OrderData(con) {
+    // const SQLQuery = "SELECT * FROM customers ORDER BY name";
+    // const SQLQuery = "SELECT * FROM customers ORDER BY name DESC";
+    const SQLQuery = "SELECT name, age FROM `citizens` ORDER BY name";
+    con.query(SQLQuery, function(err, result) {
+        if(err) {
+            console.log(err);
+        }
+        console.log(result);
     })
 }
 
