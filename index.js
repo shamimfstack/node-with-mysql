@@ -19,7 +19,9 @@ con.connect(function(err) {
 
     // UpdateData(con);
 
-    DeleteData(con);
+    // DeleteData(con);
+
+    SelectData(con);
 })
 
 
@@ -65,6 +67,23 @@ function DeleteData(con) {
             console.log(err);
         }
         console.log("Data deleted successfully!!!");
+    })
+}
+
+// select data
+function SelectData(con) {
+    // const SQLQuery = "SELECT * FROM `citizens`";
+    // const SQLQuery = "SELECT name, age FROM `citizens`";
+    // const SQLQuery = "SELECT name, age FROM `citizens` WHERE id=1";
+    const SQLQuery = "SELECT * FROM `citizens` WHERE name LIKE 'S%'";
+    con.query(SQLQuery, function(err, result, fields) {
+        if(err) {
+            console.log(err);
+        }
+        console.log(result);
+        // console.log(result[1].name);
+        // console.log(fields);
+        
     })
 }
 
