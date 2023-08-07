@@ -23,7 +23,9 @@ con.connect(function(err) {
 
     // SelectData(con);
 
-    OrderData(con);
+    // OrderData(con);
+
+    // DropTable(con);
 })
 
 
@@ -76,6 +78,9 @@ function DeleteData(con) {
 // select data
 function SelectData(con) {
     // const SQLQuery = "SELECT * FROM `citizens`";
+    // const SQLQuery = "SELECT * FROM `citizens` LIMIT 5"; (only 5 records)
+    // const SQLQuery = "SELECT * FROM `citizens` LIMIT 5 OFFSET 2"; (start from 3rd row, then 5 records)
+    // const SQLQuery = "SELECT * FROM customers LIMIT 2, 5"; (shorter syntax, start from 3rd row, then 5 records)
     // const SQLQuery = "SELECT name, age FROM `citizens`";
     // const SQLQuery = "SELECT name, age FROM `citizens` WHERE id=1";
     const SQLQuery = "SELECT * FROM `citizens` WHERE name LIKE 'S%'";
@@ -100,6 +105,18 @@ function OrderData(con) {
             console.log(err);
         }
         console.log(result);
+    })
+}
+
+// drop table
+function DropTable(con) {
+    const SQLQuery = "DROP TABLE `citizen`";
+    // const SQLQuery = "DROP TABLE IF EXISTS `citizen`";
+    con.query(SQLQuery, function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("Table deleted successfully!!!");
     })
 }
 
